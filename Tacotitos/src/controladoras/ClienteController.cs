@@ -29,25 +29,19 @@ namespace Tacotitos.src.controladoras
         {
             return clienteDAO.GetClientes();
         }
-        public void CrearCliente(string nombre, string apellido, string domicilio, string telefono)
+        public bool CrearCliente(string nombre, string apellido, string domicilio, string telefono)
         {
-            clienteDAO.CrearCliente(nombre, apellido, domicilio, telefono);
+           return clienteDAO.CrearCliente(nombre, apellido, domicilio, telefono);
         }
 
-        public void EditarCliente(int id, string nombre, string apellido, string domicilio, string telefono)
+        public bool EditarCliente(int id, string nombre, string apellido, string domicilio, string telefono)
         {
-            if (BuscarClientePorId(id) != null)
-            {
-                clienteDAO.EditarCliente(BuscarClientePorId(id), nombre, apellido, domicilio, telefono);
-            }
+            return clienteDAO.EditarCliente(BuscarClientePorId(id), nombre, apellido, domicilio, telefono);
         }
 
-        public void EliminarCliente(int id)
-        {
-            if (BuscarClientePorId(id) != null)
-            {
-                clienteDAO.EliminarCliente(BuscarClientePorId(id));
-            }
+        public bool EliminarCliente(int id)
+        {     
+          return clienteDAO.EliminarCliente(BuscarClientePorId(id));    
         }
         #endregion
 

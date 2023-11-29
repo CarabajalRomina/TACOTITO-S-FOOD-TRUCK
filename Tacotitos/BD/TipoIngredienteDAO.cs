@@ -9,7 +9,7 @@ namespace Tacotitos.BD
         private readonly TacotitosContext _context = TacotitosContext.GetContext();
         public TipoIngredienteDAO() { }
 
-        public void CrearTipoIngrediente(string nombre, int cantMax)
+        public bool CrearTipoIngrediente(string nombre, int cantMax)
         {
             try
             {
@@ -23,17 +23,32 @@ namespace Tacotitos.BD
 
                 _context.TiposIngredientes.Add(tipoIngrediente);
                 _context.SaveChanges();
+                return true;
 
-            }catch (Exception ex) { }
+            }catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
 
-        public void EditarTipoIngrediente(TipoIngrediente tipo, string nombre, int cantMax) 
+        public bool EditarTipoIngrediente(TipoIngrediente tipo, string nombre, int cantMax) 
         {
-            tipo.Nombre = nombre;
-            tipo.CantidadMax = cantMax;
-            tipo.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                tipo.Nombre = nombre;
+                tipo.CantidadMax = cantMax;
+                tipo.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+                return true;
+
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+           
         }
 
         public List<TipoIngrediente> GetTiposDeIngredientes()
@@ -48,13 +63,21 @@ namespace Tacotitos.BD
             return _context.TiposIngredientes.Find(id);
         }
 
-        public void EliminarTipoIngrediente(TipoIngrediente tipo)
+        public bool EliminarTipoIngrediente(TipoIngrediente tipo)
         {
-            tipo.BajaSino = true;
-            tipo.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                tipo.BajaSino = true;
+                tipo.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
 
         }
-
     }
 }

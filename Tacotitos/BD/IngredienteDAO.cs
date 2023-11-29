@@ -10,7 +10,7 @@ namespace Tacotitos.BD
 
         public IngredienteDAO() { }
 
-        public void CrearIngrediente(string nombre, TipoIngrediente tipo, double precio)
+        public bool CrearIngrediente(string nombre, TipoIngrediente tipo, double precio)
         {
             try
             {
@@ -25,19 +25,34 @@ namespace Tacotitos.BD
 
                 _context.Ingredientes.Add(ingrediente);
                 _context.SaveChanges();
+                return true;
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
          
-        public void EditarIngrediente(Ingrediente ingrediente, string nombre,TipoIngrediente tipo, double precio)
+        public bool EditarIngrediente(Ingrediente ingrediente, string nombre,TipoIngrediente tipo, double precio)
         {
-            ingrediente.Nombre = nombre;
-            ingrediente.IdTipoIngrediente = tipo.Id;
-            ingrediente.Precio = precio;
-            ingrediente.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                ingrediente.Nombre = nombre;
+                ingrediente.IdTipoIngrediente = tipo.Id;
+                ingrediente.Precio = precio;
+                ingrediente.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+           
         }
 
         public List<Ingrediente> GetIngredientes()
@@ -52,11 +67,21 @@ namespace Tacotitos.BD
             return _context.Ingredientes.Find(id);
         }
 
-        public void EliminarIngrediente(Ingrediente ingrediente)
+        public bool EliminarIngrediente(Ingrediente ingrediente)
         {
-            ingrediente.BajaSino = true;
-            ingrediente.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                ingrediente.BajaSino = true;
+                ingrediente.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+
+            }catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+          
         }
 
         public List<Ingrediente> GetIngredientesSegunTipoIngrediente(int idTipoIngrediente)

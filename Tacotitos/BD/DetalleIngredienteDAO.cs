@@ -27,18 +27,29 @@ namespace Tacotitos.BD
                 _context.SaveChanges();
 
             }
-            catch (Exception ex) { detalleIngre = null; }
+            catch (Exception ex) 
+            {
+                detalleIngre = null;
+                MessageBox.Show(ex.Message);
+            }
             return detalleIngre;
         }
 
         public void EditarDetalleIngrediente(DetalleIngrediente detalleIngre, int idTaco, int idIngrediente, double precioUnitario)
         {
-            detalleIngre.IdTaco = idTaco;
-            detalleIngre.IdIngrediente = idIngrediente;
-            detalleIngre.PrecioUnitario = precioUnitario;
-            detalleIngre.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                detalleIngre.IdTaco = idTaco;
+                detalleIngre.IdIngrediente = idIngrediente;
+                detalleIngre.PrecioUnitario = precioUnitario;
+                detalleIngre.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+         
         }
 
         public List<DetalleIngrediente> GetDetalleIngredientes()
@@ -62,9 +73,14 @@ namespace Tacotitos.BD
 
         public void EliminarDetalleIngrediente(DetalleIngrediente detalleIngre)
         {
-            detalleIngre.BajaSino = true;
-            detalleIngre.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                detalleIngre.BajaSino = true;
+                detalleIngre.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+
+            }catch (Exception ex) { MessageBox.Show(ex.Message); }
+           
         }
     }
 }

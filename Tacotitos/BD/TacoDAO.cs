@@ -26,16 +26,25 @@ namespace Tacotitos.BD
                 _context.SaveChanges();
 
             }
-            catch (Exception ex) { taco = null; }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                taco = null; 
+            }
             return taco;
         }
 
         public void EditarTaco(Taco taco, int idPedido)
         {
-            taco.IdPedido = idPedido;
-            taco.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                taco.IdPedido = idPedido;
+                taco.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+
+            }catch (Exception ex) {  MessageBox.Show(ex.Message); }
+           
         }
 
         public List<Taco> GetTacos()
@@ -59,9 +68,13 @@ namespace Tacotitos.BD
 
         public void EliminarTaco(Taco taco)
         {
-            taco.BajaSino = true;
-            taco.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                taco.BajaSino = true;
+                taco.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+            }catch (Exception ex) { MessageBox.Show(ex.Message); }
+         
         }
 
     }

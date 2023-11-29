@@ -28,21 +28,21 @@ namespace Tacotitos.src.controladoras
             return tipoIngredienteDAO.GetTiposDeIngredientes();
         }
 
-        public void CrearTipoIngrediente(string nombre, int cantMax)
+        public bool CrearTipoIngrediente(string nombre, int cantMax)
         {
-            tipoIngredienteDAO.CrearTipoIngrediente(ValidarCampos.NormalizarString(nombre), cantMax);
+            return tipoIngredienteDAO.CrearTipoIngrediente(ValidarCampos.NormalizarString(nombre), cantMax);
         }
 
-        public void EditarTipoIngrediente(int id, string nombre, int cantMax)
+        public bool EditarTipoIngrediente(int id, string nombre, int cantMax)
         {
             var tipo = BuscarTipoIngredienteId(id);
-            tipoIngredienteDAO.EditarTipoIngrediente(tipo, nombre, cantMax);
+            return tipoIngredienteDAO.EditarTipoIngrediente(tipo, nombre, cantMax);
         }
 
-        public void EliminarTipoIngrediente(int id)
+        public bool EliminarTipoIngrediente(int id)
         {
             var tipo = BuscarTipoIngredienteId(id);
-            tipoIngredienteDAO.EliminarTipoIngrediente(tipo);
+            return tipoIngredienteDAO.EliminarTipoIngrediente(tipo);
         }
 
 

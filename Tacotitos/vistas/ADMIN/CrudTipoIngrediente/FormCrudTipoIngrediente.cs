@@ -26,7 +26,10 @@ namespace Tacotitos.vistas.ADMIN.CrudTipoIngrediente
         #region CRUD
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            CntTipoIngrediente.CrearTipoIngrediente(txtNombre.Text, Convert.ToInt32(nduCantMax.Value));
+            if(CntTipoIngrediente.CrearTipoIngrediente(txtNombre.Text, Convert.ToInt32(nduCantMax.Value)))
+            {
+                MessageBox.Show("EL TIPO DE INGREDIENTE SE CREO CORRECTAMENTE");
+            }
             ResetearCampos();
             ActualizarDgvTipoIngrediente();
         }
@@ -45,7 +48,10 @@ namespace Tacotitos.vistas.ADMIN.CrudTipoIngrediente
             {
                 if (dgvTiposIngrediente.SelectedRows.Count > 0)
                 {
-                    CntTipoIngrediente.EditarTipoIngrediente(Convert.ToInt32(txtId.Text), txtNombre.Text, Convert.ToInt32(nduCantMax.Value));
+                    if(CntTipoIngrediente.EditarTipoIngrediente(Convert.ToInt32(txtId.Text), txtNombre.Text, Convert.ToInt32(nduCantMax.Value)))
+                    {
+                        MessageBox.Show("EL TIPO DE INGREDIENTE SE EDITO CORRECTAMENTE");
+                    }
                 }
             }
             ResetearCampos();
@@ -61,7 +67,10 @@ namespace Tacotitos.vistas.ADMIN.CrudTipoIngrediente
             {
                 if (dgvTiposIngrediente.SelectedRows.Count > 0)
                 {
-                    CntTipoIngrediente.EliminarTipoIngrediente(Convert.ToInt32(dgvTiposIngrediente.SelectedRows[0].Cells[0].Value));
+                    if (CntTipoIngrediente.EliminarTipoIngrediente(Convert.ToInt32(dgvTiposIngrediente.SelectedRows[0].Cells[0].Value)))
+                    {
+                        MessageBox.Show("EL TIPO DE INGREDIENTE SE ELIMINO CORRECTAMENTE");
+                    }
                 }
             }
             ActualizarDgvTipoIngrediente();

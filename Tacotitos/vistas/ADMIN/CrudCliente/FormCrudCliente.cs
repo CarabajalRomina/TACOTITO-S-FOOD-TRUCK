@@ -17,7 +17,11 @@ namespace Tacotitos.vistas.ADMIN.CrudCliente
         #region CRUD
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            CntCliente.CrearCliente(txtNombre.Text, txtApellido.Text, txtDomicilio.Text, txtTelefono.Text);
+            if(CntCliente.CrearCliente(txtNombre.Text, txtApellido.Text, txtDomicilio.Text, txtTelefono.Text))
+            {
+                MessageBox.Show("EL CLIENTE SE GENERO CORRECTAMENTE");
+            }
+       
             ResetearCampos();
             ActualizarDgvCliente();
         }
@@ -28,7 +32,10 @@ namespace Tacotitos.vistas.ADMIN.CrudCliente
             {
                 if (dgvClientes.SelectedRows.Count > 0)
                 {
-                    CntCliente.EditarCliente(Convert.ToInt32(txtId.Text), txtNombre.Text, txtApellido.Text, txtDomicilio.Text, txtTelefono.Text);
+                    if(CntCliente.EditarCliente(Convert.ToInt32(txtId.Text), txtNombre.Text, txtApellido.Text, txtDomicilio.Text, txtTelefono.Text))
+                    {
+                        MessageBox.Show($"EL CLIENTE {txtApellido} {txtNombre} SE EDITO CORRECTAMENTE");
+                    }
                 }
             }
             ResetearCampos();
@@ -44,7 +51,10 @@ namespace Tacotitos.vistas.ADMIN.CrudCliente
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            CntCliente.EliminarCliente(Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value));
+            if (CntCliente.EliminarCliente(Convert.ToInt32(dgvClientes.SelectedRows[0].Cells[0].Value)))
+            {
+                MessageBox.Show("EL CLIENTE SE ELIMINO CORRECTAMENTE");
+            }
             ActualizarDgvCliente();
         }
         #endregion

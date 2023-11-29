@@ -32,25 +32,19 @@ namespace Tacotitos.src.controladoras
         {
             return ingredienteDAO.GetIngredientes();
         }
-        public void CrearIngrediente(string nombre, TipoIngrediente tipo, double precio)
+        public bool CrearIngrediente(string nombre, TipoIngrediente tipo, double precio)
         {
-            ingredienteDAO.CrearIngrediente(nombre, tipo, precio);
+            return ingredienteDAO.CrearIngrediente(nombre, tipo, precio);
         }
 
-        public void EditarIngrediente(int id, string nombre, TipoIngrediente tipo, double precio)
+        public bool EditarIngrediente(int id, string nombre, TipoIngrediente tipo, double precio)
         {
-            if(BuscarIngredientePorId(id)!= null)
-            {
-                ingredienteDAO.EditarIngrediente(BuscarIngredientePorId(id), nombre, tipo, precio);
-            }
+             return  ingredienteDAO.EditarIngrediente(BuscarIngredientePorId(id), nombre, tipo, precio);
         }
 
-        public void EliminarIngrediente(int id)
+        public bool EliminarIngrediente(int id)
         {
-            if (BuscarIngredientePorId(id) != null)
-            {
-                ingredienteDAO.EliminarIngrediente(BuscarIngredientePorId(id));
-            }
+            return ingredienteDAO.EliminarIngrediente(BuscarIngredientePorId(id));
         }
         #endregion
 

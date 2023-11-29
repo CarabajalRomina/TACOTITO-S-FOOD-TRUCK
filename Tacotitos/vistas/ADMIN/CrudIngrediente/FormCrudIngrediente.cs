@@ -39,7 +39,10 @@ namespace Tacotitos.vistas.ADMIN.CrudIngrediente
             {
                 if (dgvIngredientes.SelectedRows.Count > 0)
                 {
-                    CntIngrediente.EditarIngrediente(Convert.ToInt32(txtId.Text), txtNombre.Text, (TipoIngrediente)cbbTipo.SelectedItem, Convert.ToDouble(nduPrecio.Value));
+                    if(CntIngrediente.EditarIngrediente(Convert.ToInt32(txtId.Text), txtNombre.Text, (TipoIngrediente)cbbTipo.SelectedItem, Convert.ToDouble(nduPrecio.Value)))
+                    {
+                        MessageBox.Show("EL INGREDIENTE SE ACTUALIZO CORRECTAMENTE");
+                    }
                 }
             }
             ResetearCampos();
@@ -51,7 +54,10 @@ namespace Tacotitos.vistas.ADMIN.CrudIngrediente
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            CntIngrediente.CrearIngrediente(txtNombre.Text, (TipoIngrediente)cbbTipo.SelectedItem, Convert.ToDouble(nduPrecio.Value));
+            if(CntIngrediente.CrearIngrediente(txtNombre.Text, (TipoIngrediente)cbbTipo.SelectedItem, Convert.ToDouble(nduPrecio.Value)))
+            {
+                MessageBox.Show($"EL INGREDIENTE {txtNombre.Text} SE CREO CORRECTAMENTE");
+            }
             ResetearCampos();
             ActualizarDgvIngrediente();
 
@@ -59,7 +65,10 @@ namespace Tacotitos.vistas.ADMIN.CrudIngrediente
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            CntIngrediente.EliminarIngrediente(Convert.ToInt32(dgvIngredientes.SelectedRows[0].Cells[0].Value));
+            if (CntIngrediente.EliminarIngrediente(Convert.ToInt32(dgvIngredientes.SelectedRows[0].Cells[0].Value)))
+            {
+                MessageBox.Show("EL INGREDIENTE SE ELIMINO CORRECTAMENTE");
+            }
             ActualizarDgvIngrediente();
         }
         private void btnCancelar_Click(object sender, EventArgs e)

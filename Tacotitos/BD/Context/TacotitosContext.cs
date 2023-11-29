@@ -1,11 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.src.interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 using Tacotitos.src.modelo.cliente;
 using Tacotitos.src.modelo.detalleIngrediente;
 using Tacotitos.src.modelo.ingrediente;
@@ -43,7 +36,14 @@ namespace Tacotitos.BD.Context
             if (!optionsBuilder.IsConfigured)
             {
                 var connection = "Server=LAPTOP-2L63D3JF\\SQLEXPRESS;Database=Tacotitos;Trusted_Connection=True;Encrypt=false";
-                optionsBuilder.UseSqlServer(connection);
+                try
+                {
+                    optionsBuilder.UseSqlServer(connection);
+
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

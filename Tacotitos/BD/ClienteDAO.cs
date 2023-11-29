@@ -1,4 +1,5 @@
 ﻿
+using System.Linq.Expressions;
 using Tacotitos.BD.Context;
 using Tacotitos.src.modelo.cliente;
 
@@ -11,7 +12,7 @@ namespace Tacotitos.BD
 
         public ClienteDAO() { }
 
-        public void CrearCliente(string nombre, string apellido, string domicilio, string telefono)
+        public bool CrearCliente(string nombre, string apellido, string domicilio, string telefono)
         {
             try
             {
@@ -28,21 +29,34 @@ namespace Tacotitos.BD
 
                 _context.Clientes.Add(cliente);
                 _context.SaveChanges();
-
+                return true;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return false; 
+            }
         }
 
-        public void EditarCliente(Cliente cliente, string nombre, string apellido, string domicilio, string telefono)
+        public bool EditarCliente(Cliente cliente, string nombre, string apellido, string domicilio, string telefono)
         {
-            cliente.Nombre = nombre;
-            cliente.Apellido = apellido;
-            cliente.NombreCompleto = apellido + " " + nombre;
-            cliente.Domicilio = domicilio;
-            cliente.Telefono = telefono;
-            cliente.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                cliente.Nombre = nombre;
+                cliente.Apellido = apellido;
+                cliente.NombreCompleto = apellido + " " + nombre;
+                cliente.Domicilio = domicilio;
+                cliente.Telefono = telefono;
+                cliente.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
 
         public List<Cliente> GetClientes()
@@ -57,11 +71,20 @@ namespace Tacotitos.BD
             return _context.Clientes.Find(id);
         }
 
-        public void EliminarCliente(Cliente cliente)
+        public bool EliminarCliente(Cliente cliente)
         {
-            cliente.BajaSino = true;
-            cliente.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                cliente.BajaSino = true;
+                cliente.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
 
 

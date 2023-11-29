@@ -26,16 +26,30 @@ namespace Tacotitos.BD
                 _context.SaveChanges();
                
             }
-            catch (Exception ex) { pedido = null; }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                pedido = null; 
+            }
             return pedido;
         }
 
-        public void EditarPedido(Pedido pedido,int idCliente)
+        public bool EditarPedido(Pedido pedido,int idCliente)
         {
-            pedido.IdCliente = idCliente;         
-            pedido.CuandoSeActualizo = DateTime.Now;
+            try
+            {
+                pedido.IdCliente = idCliente;
+                pedido.CuandoSeActualizo = DateTime.Now;
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+                return true;
+
+            }catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            
         }
 
         public List<Pedido> GetPedidos()
@@ -50,11 +64,21 @@ namespace Tacotitos.BD
             return _context.Pedidos.Find(id);
         }
 
-        public void EliminarPedido(Pedido pedido)
+        public bool EliminarPedido(Pedido pedido)
         {
-            pedido.BajaSino = true;
-            pedido.CuandoSeElimino = DateTime.Now;
-            _context.SaveChanges();
+            try
+            {
+                pedido.BajaSino = true;
+                pedido.CuandoSeElimino = DateTime.Now;
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+          
         }
 
     }
