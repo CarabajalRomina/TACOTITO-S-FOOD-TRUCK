@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Tacotitos.BD.Context;
-using Tacotitos.src.modelo.pedido;
 using Tacotitos.src.modelo.taco;
 
 namespace Tacotitos.BD

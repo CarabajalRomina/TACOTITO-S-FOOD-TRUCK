@@ -5,7 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tacotitos.src.modelo.detalleIngrediente;
+using Tacotitos.src.modelo.ingrediente;
 using Tacotitos.src.modelo.pedido;
+using Tacotitos.src.modelo.taco;
 
 namespace Tacotitos.src.modelo.cliente
 {
@@ -38,14 +41,23 @@ namespace Tacotitos.src.modelo.cliente
          
         }
 
-        public string TOString()
+        public override bool Equals(object obj)
         {
-            return $"Id: {IdCliente}" +
-              $"Nombre: {Nombre}" +
-              $"Apellido: {Apellido}" +
-              $"Nombre completo: {NombreCompleto}" +
-              $"Domicilio: {Domicilio}" +
-              $"Telefono: {Telefono}";
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Cliente otroCliente = (Cliente)obj;
+            return ((IdCliente == otroCliente.IdCliente) &&
+                (NombreCompleto == otroCliente.NombreCompleto) &&
+                (BajaSino == otroCliente.BajaSino) &&
+            (CuandoSeCreo == otroCliente.CuandoSeCreo));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IdCliente, NombreCompleto, BajaSino, CuandoSeCreo);
         }
 
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.BD;
+﻿using Tacotitos.BD;
 using Tacotitos.src.modelo.pedido;
 
 namespace Tacotitos.src.controladoras

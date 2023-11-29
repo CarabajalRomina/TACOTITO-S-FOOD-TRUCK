@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tacotitos.src.modelo.ingrediente;
 
 namespace Tacotitos.src.modelo.tiposIngredientes
@@ -24,6 +18,7 @@ namespace Tacotitos.src.modelo.tiposIngredientes
         public virtual ICollection<Ingrediente> Ingredientes { get; set; }
 
 
+        public TipoIngrediente() { }
         public bool EsAlimento()
         {
             return Nombre.Contains("Alimento");
@@ -37,6 +32,26 @@ namespace Tacotitos.src.modelo.tiposIngredientes
         public override string ToString()
         {
             return Nombre;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            TipoIngrediente otroTipo = (TipoIngrediente)obj;
+            return ((Id == otroTipo.Id) &&
+                (Nombre == otroTipo.Nombre) &&
+                (CantidadMax == otroTipo.CantidadMax) &&
+                (BajaSino == otroTipo.BajaSino) &&
+                (CuandoSeCreo == otroTipo.CuandoSeCreo));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id,Nombre, CantidadMax,BajaSino,CuandoSeCreo);
         }
 
     }

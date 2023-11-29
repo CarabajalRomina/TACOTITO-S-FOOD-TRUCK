@@ -39,5 +39,26 @@ namespace Tacotitos.src.modelo.detalleIngrediente
                 $"Ingrediente: {ingrediente}" + "\n" +
                 $"Precio: {PrecioUnitario}";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            DetalleIngrediente otroDetalleIngre = (DetalleIngrediente)obj;
+            return ((IdIngrediente == otroDetalleIngre.IdIngrediente) &&
+                (IdDetalle == otroDetalleIngre.IdDetalle) &&
+                (IdTaco == otroDetalleIngre.IdTaco) &&
+                (BajaSino == otroDetalleIngre.BajaSino) &&
+                (CuandoSeCreo == otroDetalleIngre.CuandoSeCreo));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IdIngrediente, IdDetalle, IdTaco, BajaSino, CuandoSeCreo);
+        }
     }
+
 }

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tacotitos.src.modelo.detalleIngrediente;
 using Tacotitos.src.modelo.pedido;
 
@@ -28,29 +22,49 @@ namespace Tacotitos.src.modelo.taco
         [InverseProperty("Tacos")]
         public virtual Pedido pedido { get; set; }
 
+
+
+        public Taco() 
+        {
+        }
+        public Taco(List<DetalleIngrediente> ingredientes)
+        {
+            Ingredientes = new List<DetalleIngrediente>(ingredientes);
+        }
+
         public double GetPrecioTaco()
         {
             double precio = 0;
-            foreach(var ingrediente in Ingredientes)
+            foreach (var ingrediente in Ingredientes)
             {
                 precio += ingrediente.PrecioUnitario;
             }
             return precio;
         }
 
-
-        public Taco() 
-        {
-        }
-        public Taco(ICollection<DetalleIngrediente> ingredientes)
-        {
-            Ingredientes = new List<DetalleIngrediente>(ingredientes);
-        }
-
         public override string ToString()
         {
             return $"Id: {IdTaco}" +
                 $"Ingredientes: {Ingredientes}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Taco otroTaco = (Taco)obj;
+            return ((IdTaco == otroTaco.IdTaco) &&
+                (IdPedido == otroTaco.IdPedido) &&
+                (BajaSino == otroTaco.BajaSino) &&
+                (CuandoSeCreo == otroTaco.CuandoSeCreo));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IdTaco,IdPedido, BajaSino, CuandoSeCreo);
         }
     }
 }

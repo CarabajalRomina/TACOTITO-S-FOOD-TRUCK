@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.BD;
+﻿using Tacotitos.BD;
 using Tacotitos.src.modelo.detalleIngrediente;
-using Tacotitos.src.modelo.ingrediente;
-using Tacotitos.src.modelo.tiposIngredientes;
 
 namespace Tacotitos.src.controladoras
 {

@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.BD;
-using Tacotitos.src.interfaces;
+﻿using Tacotitos.BD;
 using Tacotitos.src.modelo.detalleIngrediente;
 using Tacotitos.src.modelo.ingrediente;
 using Tacotitos.src.modelo.tiposIngredientes;
@@ -16,7 +9,7 @@ namespace Tacotitos.src.controladoras
     {
         private static IngredienteController? CntIngrendiente;
         TacoController CntTaco = TacoController.GetControllerTaco();
-        IngredienteDAO IngredienteBd = new IngredienteDAO();
+        IngredienteDAO ingredienteDAO = new IngredienteDAO();
 
 
         #region SINGLETON
@@ -37,18 +30,18 @@ namespace Tacotitos.src.controladoras
         #region CRUD
         public List<Ingrediente> GetIngredientes()
         {
-            return IngredienteBd.GetIngredientes();
+            return ingredienteDAO.GetIngredientes();
         }
         public void CrearIngrediente(string nombre, TipoIngrediente tipo, double precio)
         {
-            IngredienteBd.CrearIngrediente(nombre, tipo, precio);
+            ingredienteDAO.CrearIngrediente(nombre, tipo, precio);
         }
 
         public void EditarIngrediente(int id, string nombre, TipoIngrediente tipo, double precio)
         {
             if(BuscarIngredientePorId(id)!= null)
             {
-                IngredienteBd.EditarIngrediente(BuscarIngredientePorId(id), nombre, tipo, precio);
+                ingredienteDAO.EditarIngrediente(BuscarIngredientePorId(id), nombre, tipo, precio);
             }
         }
 
@@ -56,19 +49,19 @@ namespace Tacotitos.src.controladoras
         {
             if (BuscarIngredientePorId(id) != null)
             {
-                IngredienteBd.EliminarIngrediente(BuscarIngredientePorId(id));
+                ingredienteDAO.EliminarIngrediente(BuscarIngredientePorId(id));
             }
         }
         #endregion
 
         public Ingrediente BuscarIngredientePorId(int id)
         {
-            return IngredienteBd.BuscarIngredientePorId(id);
+            return ingredienteDAO.BuscarIngredientePorId(id);
         }
 
         public List<Ingrediente> GetIngredientesSegunTipoIngrediente(int idIngrediente)
         {
-            return IngredienteBd.GetIngredientesSegunTipoIngrediente(idIngrediente);
+            return ingredienteDAO.GetIngredientesSegunTipoIngrediente(idIngrediente);
         }
 
         public List<Ingrediente> GetIngredientesQueNoEstanDentroDeUnTaco(int idTipoIngrediente, List<DetalleIngrediente> listDetalleIngre)

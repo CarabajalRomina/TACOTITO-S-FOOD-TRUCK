@@ -57,8 +57,6 @@
             pnlBotones = new Panel();
             btnEliminar = new Button();
             btnEditar = new Button();
-            pcbBuscar = new PictureBox();
-            txtBuscar = new TextBox();
             pnlBoton.SuspendLayout();
             pnlLateral.SuspendLayout();
             pnlForm.SuspendLayout();
@@ -66,7 +64,6 @@
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
             pnlBotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pcbBuscar).BeginInit();
             SuspendLayout();
             // 
             // pnlBoton
@@ -334,8 +331,6 @@
             // 
             pnlBotones.Controls.Add(btnEliminar);
             pnlBotones.Controls.Add(btnEditar);
-            pnlBotones.Controls.Add(pcbBuscar);
-            pnlBotones.Controls.Add(txtBuscar);
             pnlBotones.Location = new Point(24, 20);
             pnlBotones.Name = "pnlBotones";
             pnlBotones.Size = new Size(838, 85);
@@ -343,9 +338,9 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(605, 16);
+            btnEliminar.Location = new Point(571, 16);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(184, 45);
+            btnEliminar.Size = new Size(218, 45);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "ELIMINAR";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -353,30 +348,13 @@
             // 
             // btnEditar
             // 
-            btnEditar.Location = new Point(383, 16);
+            btnEditar.Location = new Point(313, 16);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(184, 45);
+            btnEditar.Size = new Size(221, 45);
             btnEditar.TabIndex = 2;
             btnEditar.Text = "EDITAR";
             btnEditar.UseVisualStyleBackColor = true;
             btnEditar.Click += btnEditar_Click;
-            // 
-            // pcbBuscar
-            // 
-            pcbBuscar.Image = Properties.Resources.lupa1_removebg_preview;
-            pcbBuscar.Location = new Point(294, 16);
-            pcbBuscar.Name = "pcbBuscar";
-            pcbBuscar.Size = new Size(36, 50);
-            pcbBuscar.SizeMode = PictureBoxSizeMode.CenterImage;
-            pcbBuscar.TabIndex = 1;
-            pcbBuscar.TabStop = false;
-            // 
-            // txtBuscar
-            // 
-            txtBuscar.Location = new Point(20, 27);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(268, 37);
-            txtBuscar.TabIndex = 0;
             // 
             // FormCrudCliente
             // 
@@ -399,8 +377,6 @@
             pnlContenido.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
             pnlBotones.ResumeLayout(false);
-            pnlBotones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pcbBuscar).EndInit();
             ResumeLayout(false);
         }
 
@@ -434,7 +410,5 @@
         private Panel pnlBotones;
         private Button btnEliminar;
         private Button btnEditar;
-        private PictureBox pcbBuscar;
-        private TextBox txtBuscar;
     }
 }

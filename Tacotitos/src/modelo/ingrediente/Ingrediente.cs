@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.src.interfaces;
 using Tacotitos.src.modelo.detalleIngrediente;
 using Tacotitos.src.modelo.tiposIngredientes;
 
@@ -33,6 +26,28 @@ namespace Tacotitos.src.modelo.ingrediente
         [InverseProperty("ingrediente")]
         public virtual ICollection<DetalleIngrediente> DetalleIngrediente {  get; set; }
 
+        public Ingrediente() { }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Ingrediente otroIngre = (Ingrediente)obj;
+            return ((IdIngrediente == otroIngre.IdIngrediente) &&
+                (IdTipoIngrediente == otroIngre.IdTipoIngrediente) &&
+                (Nombre == otroIngre.Nombre) &&
+                (Precio == otroIngre.Precio) &&
+                (BajaSino == otroIngre.BajaSino) &&
+                (CuandoSeCreo == otroIngre.CuandoSeCreo));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IdIngrediente,IdTipoIngrediente,Nombre, Precio, BajaSino, CuandoSeCreo);
+        }
 
         public override string ToString()
         {

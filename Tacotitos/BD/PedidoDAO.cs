@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Tacotitos.BD.Context;
-using Tacotitos.src.modelo.cliente;
-using Tacotitos.src.modelo.ingrediente;
 using Tacotitos.src.modelo.pedido;
-using Tacotitos.src.modelo.tiposIngredientes;
 
 namespace Tacotitos.BD
 {

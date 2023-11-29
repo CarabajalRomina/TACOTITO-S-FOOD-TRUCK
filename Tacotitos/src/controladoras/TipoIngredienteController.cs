@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tacotitos.BD;
+﻿using Tacotitos.BD;
 using Tacotitos.src.modelo.tiposIngredientes;
 
 namespace Tacotitos.src.controladoras
@@ -11,7 +6,7 @@ namespace Tacotitos.src.controladoras
     internal class TipoIngredienteController
     {
         private static TipoIngredienteController CntTipoIngrendiente;
-        TipoIngredienteDAO TipoIngredienteBd = new TipoIngredienteDAO();
+        TipoIngredienteDAO tipoIngredienteDAO = new TipoIngredienteDAO();
 
         #region SINGLETON
         private TipoIngredienteController() { }
@@ -30,24 +25,24 @@ namespace Tacotitos.src.controladoras
         #region CRUD
         public List<TipoIngrediente> GetTiposIngrediente()
         {
-            return TipoIngredienteBd.GetTiposDeIngredientes();
+            return tipoIngredienteDAO.GetTiposDeIngredientes();
         }
 
         public void CrearTipoIngrediente(string nombre, int cantMax)
         {
-            TipoIngredienteBd.CrearTipoIngrediente(ValidarCampos.NormalizarString(nombre), cantMax);
+            tipoIngredienteDAO.CrearTipoIngrediente(ValidarCampos.NormalizarString(nombre), cantMax);
         }
 
         public void EditarTipoIngrediente(int id, string nombre, int cantMax)
         {
             var tipo = BuscarTipoIngredienteId(id);
-            TipoIngredienteBd.EditarTipoIngrediente(tipo, nombre, cantMax);
+            tipoIngredienteDAO.EditarTipoIngrediente(tipo, nombre, cantMax);
         }
 
         public void EliminarTipoIngrediente(int id)
         {
             var tipo = BuscarTipoIngredienteId(id);
-            TipoIngredienteBd.EliminarTipoIngrediente(tipo);
+            tipoIngredienteDAO.EliminarTipoIngrediente(tipo);
         }
 
 
@@ -55,7 +50,7 @@ namespace Tacotitos.src.controladoras
 
         public TipoIngrediente BuscarTipoIngredienteId(int id)
         {
-            return TipoIngredienteBd.BuscarTipoIngredientePorId(id);
+            return tipoIngredienteDAO.BuscarTipoIngredientePorId(id);
         }
 
 
